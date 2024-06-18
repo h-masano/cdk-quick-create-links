@@ -29,6 +29,11 @@ This is a sample project for generate quick create link with CDK.
     ```
 
 1. generate URL according to the format below
-    > https://<region>.console.aws.amazon.com/cloudformation/home?region=<region>#/stacks/create/review?stackName=CdkQuickCreateLinksStack&templateURL=https://cdk-XXXXXXX-assets-<your aws account number>-<region>.s3.<region>.amazonaws.com/<your assets hash>.json&param_ParamContentBasedDeduplication=<true/false>&param_ParamFifoQueue=<true/false>&param_ParamVisibilityTimeout=<123>
+    > https://(region).console.aws.amazon.com/cloudformation/home?region=(region)#/stacks/create/review
+    > ?stackName=(your Stack name)
+    > &templateURL=(your template S3 URL)
+    > &param_ParamContentBasedDeduplication=(true/false)
+    > &param_ParamFifoQueue=(true/false)
+    > &param_ParamVisibilityTimeout=(123)
     - You can change stackName query.
     - The templateURL is linked to the S3 bucket object displayed in the execution results of the cdk-assets command. You can get the exact templateURL by viewing the object from the management console.
