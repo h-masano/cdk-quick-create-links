@@ -1,14 +1,34 @@
-# Welcome to your CDK TypeScript project
+# cdk-quick-create-links
 
-This is a blank project for CDK development with TypeScript.
+This is a sample project for generate quick create link with CDK.
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+## Usage
 
-## Useful commands
+1. install cdk and cdk-assets in this project
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `npx cdk deploy`  deploy this stack to your default AWS account/region
-* `npx cdk diff`    compare deployed stack with current state
-* `npx cdk synth`   emits the synthesized CloudFormation template
+    ```bash
+    npm install
+    ```
+
+1. setup CDK in your AWS account
+
+    ```bash
+    npx cdk bootstrap
+    ```
+
+1. synthesize CloudFormation template
+
+    ```bash
+    npx cdk synth
+    ```
+
+1. publish synthesized template to S3 bucket
+
+    ```bash
+    npx cdk-assets publish --path cdk.out/CdkQuickCreateLinksStack.assets.json -v
+    ```
+
+1. generate URL according to the format below
+    > https://<region>.console.aws.amazon.com/cloudformation/home?region=<region>#/stacks/create/review?stackName=CdkQuickCreateLinksStack&templateURL=https://cdk-XXXXXXX-assets-<your aws account number>-<region>.s3.<region>.amazonaws.com/<your assets hash>.json&param_ParamContentBasedDeduplication=<true/false>&param_ParamFifoQueue=<true/false>&param_ParamVisibilityTimeout=<123>
+    - You can change stackName query.
+    - The templateURL is linked to the S3 bucket object displayed in the execution results of the cdk-assets command. You can get the exact templateURL by viewing the object from the management console.
